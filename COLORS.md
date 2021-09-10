@@ -1,0 +1,21 @@
+# Kleurcodes
+* background: #34343b
+  * alt: #31313a
+  * dark: #25252d
+* foreground: #ffffff
+* carets: #ffa726
+* blue: #5657f5
+  * grayish: #5c6bc0
+  * light: #9e9ff9
+  * transparency: 4b
+  * intense: #4401ff
+* selection-background: #5657f5
+* orange: #ff6d00
+  * intense: #dd2c00
+* gray: #44454b
+* purple: #7c4dff
+  * light: #a382ff
+* red: #ef5350 
+  * light: #ff5252
+* green: #00c853
+  * mat: #66bb6a

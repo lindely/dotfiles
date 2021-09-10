@@ -1,0 +1,89 @@
+#! /bin/sh
+
+# Uiterlijk van QT-applicaties via qt5ct.
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# Gelijke fontschaling op alle schermen met alacritty.
+export WINIT_X11_SCALE_FACTOR=1
+
+# Start daemon voor sneltoetsen.
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# Start compositor.
+picom --experimental-backends &
+
+# Notificatiesysteem. Kill om evt. config te herladen.
+killall dunst
+dunst &
+
+# Keyboardlayout.
+#   localectl list-x11-keymap-layouts
+#   localectl list-x11-keymap-variants <locale>
+setxkbmap -layout us -variant alt-intl &
+
+# Machinespecifieke dingen
+if [[ $(hostname) == 'iris' ]]; then
+  # Desktop
+  export X_CPU_HWMON="/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp2_input"
+  export X_GPU_HWMON="/sys/devices/pci0000:00/0000:00:01.3/0000:02:00.0/usb1/1-12/1-12:1.0/0003:1E71:170E.0006/hwmon/hwmon2/temp1_input"
+
+  # bspwm
+  bspc monitor DP-0 -d 1 2 3 4
+  bspc monitor DP-4 -d 5 6 7 8
+
+  # Schermen omdraaien omdat DP-4 anders indexes 1-4 krijgt.
+  bspc wm -O DP-0 DP-4
+
+  bspc rule -a Thunderbird desktop='2'
+  bspc rule -a discord desktop='6'
+  bspc rule -a TelegramDesktop desktop='6'
+
+  # Wallpaper instellen
+  xwallpaper --output DP-0 --zoom ~/git/dotfiles/wallpapers/rolua_n-1-denoised.jpg && xwallpaper --output DP-4 --zoom ~/git/dotfiles/wallpapers/rolua_n-2-denoised.jpg
+elif [[ $(hostname) == 'kai' ]]; then
+  # Laptop
+  export X_CPU_HWMON="/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon3/temp2_input"
+  export X_GPU_HWMON="/sys/devices/pci0000:00/0000:00:08.1/0000:02:00.0/hwmon/hwmon2/temp1_input"
+
+  # bspwm
+  bspc monitor -d 1 2 3 4 5
+
+  bspc rule -a discord desktop='2'
+  bspc rule -a TelegramDesktop desktop='2'
+  bspc rule -a Thunderbird desktop='4'
+
+  # Wallpaper instellen
+  xwallpaper --zoom ~/git/dotfiles/wallpapers/rolua_n-2-denoised.jpg &
+fi
+
+bspc rule -a firefox desktop='1'
+bspc rule -a Gimp state=floating follow=on
+
+bspc config border_width        2
+bspc config window_gap          16
+bspc config split_ratio         0.6
+bspc config borderless_monocle  true
+bspc config gapless_monocle     true
+bspc config top_padding         34
+
+# Muisbediening voor zwevende vensters.
+# mod+s      Maak zwevend
+# mod+mouse  Pointer-actie uitvoeren
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
+
+# Dracula
+bspc config normal_border_color "#34343b"
+bspc config active_border_color "#5c6bc0"
+bspc config focused_border_color "#5657f5"
+bspc config presel_feedback_color "#34343b"
+
+# Polybar.
+$HOME/.config/polybar/launch.sh
+
+# Corsair CUE-like implementation.
+if [ -e /usr/bin/ckb-next ]; then
+  /usr/bin/ckb-next -b -c &
+fi
+

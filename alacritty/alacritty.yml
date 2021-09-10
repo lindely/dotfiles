@@ -1,0 +1,69 @@
+font:
+  normal:
+    family: JetBrainsMono Nerd Font
+    style: Regular
+
+  bold:
+    family: JetBrainsMono Nerd Font
+    style: Bold
+  
+  italic:
+    family: JetBrainsMono Nerd Font
+    style: Italic
+
+  bold_italic:
+    family: JetBrainsMono Nerd Font
+    style: Bold Italic
+colors:
+  primary:
+    background: '0x25252d'
+    foreground: '0xffffff'
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  search:
+    matches:
+      foreground: '0x5657f5'
+      background: CellBackground
+    focused_match:
+      foreground: '0xef4f9c'
+      background: CellBackground
+    bar:
+      background: '0x282a36'
+      foreground: '0xf8f8f2'
+  line_indicator:
+    foreground: None
+    background: None
+  selection:
+    text: CellForeground
+    background: '0x5657f5'
+  normal:
+    black:   '0x25252d'
+    red:     '0xef5350'
+    green:   '0x00c853'
+    yellow:  '0xffee00'
+    blue:    '0x5657f5'
+    magenta: '0x7c4dff'
+    cyan:    '0x55a5f4'
+    white:   '0xffffff'
+  bright:
+    black:   '0x25252d'
+    red:     '0xef5350'
+    green:   '0x00c853'
+    yellow:  '0xffee00'
+    blue:    '0x5657f5'
+    magenta: '0x7c4dff'
+    cyan:    '0x55a5f4'
+    white:   '0xffffff'
+  dim:
+    black:   '0x25252d'
+    red:     '0xef5350'
+    green:   '0x00c853'
+    yellow:  '0xffee00'
+    blue:    '0x5657f5'
+    magenta: '0x7c4dff'
+    cyan:    '0x55a5f4'
+    white:   '0xffffff'

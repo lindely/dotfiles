@@ -42,10 +42,3 @@ auto_completion_tab_key_behavior = "cycle"
 name = 'shell'
 default_position = 'top'
 default_height = 30
-
-# Kopieer thema uit https://github.com/dracula/vim naar ~/.vim/bundle om 
-# het thema te kunnen gebruiken.
-[[custom_plugins]]
-repo="dracula/vim"
-name="dracula"
-merged="false"

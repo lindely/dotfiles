@@ -121,6 +121,5 @@ om `pactl` aan te roepen voor volumebeheer en notificatie via `dunst`.
 ## SpaceVim.d
 Locatie: `~/.SpaceVim.d`
 
-Eigen configuratie voor SpaceVim. Maakt gebruik van het 
-[Dracula-thema](https://draculatheme.com/vim) dat in `~/.vim` moet worden 
-geplaatst.
+Eigen configuratie voor SpaceVim. Maakt gebruik van het jellybeans-thema
+dat met SpaceVim wordt geleverd.

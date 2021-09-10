@@ -9,7 +9,7 @@ eigen smaak doorgevoerd.
 ## alacritty
 Locatie: `~/.config/alacritty`
 
-Enkel het lettertype wordt ingesteld (`nerd-fonts-jetbrains-mono`).
+Het lettertype dat wordt ingesteld: `nerd-fonts-jetbrains-mono`.
 
 ## bspwm
 Locatie: `~/.config/bspwm`
@@ -65,10 +65,6 @@ Locatie: `~/.config/polybar`
 
 Scripts binnen de polybar-directory komen van derden en bevatten hun eigen
 LICENSE in de bestanden zelf.
-
-Als basis van de configuratie is die van 
-[raven2cz](https://github.com/raven2cz/polybar-config) genomen en naar eigen
-smaak uitgewerkt.
 
 Afhankelijkheden om verbatim te kunnen gebruiken:
 * mpd

@@ -73,7 +73,7 @@ bspc config pointer_action1 move
 bspc config pointer_action2 resize_side
 bspc config pointer_action3 resize_corner
 
-# Dracula
+# Kleuren (gebaseerd op Layan)
 bspc config normal_border_color "#34343b"
 bspc config active_border_color "#5c6bc0"
 bspc config focused_border_color "#5657f5"

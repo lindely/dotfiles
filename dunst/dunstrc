@@ -4,21 +4,21 @@
   background = "#34343b"
   foreground = "#ffffff"
   frame_color = "#34343b"
-  timeout = 60
+  timeout = 10
   #icon = /path/to/icon
 
 [urgency_normal]
   background = "#5657f5"
   foreground = "#ffffff"
   frame_color = "#5657f5"
-  timeout = 60
+  timeout = 10
   #icon = /path/to/icon
 
 [urgency_critical]
   background = "#ef5350"
   foreground = "#ffffff"
   frame_color = "#ef5350"
-  timeout = 60
+  timeout = 10
   #icon = /path/to/icon
 
 [global]

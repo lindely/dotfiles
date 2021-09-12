@@ -40,7 +40,7 @@ Locatie: `~/.config/dunst`
 Eigen kleurenpalet en positionering voor `dunst`.
 
 ## firefox
-[thema](https://color.firefox.com/?theme=XQAAAAK7AQAAAAAAAABBKYhm849SCia-yK6EGccwS-xMDPr7thdS1H-qV5BVnLNCChVZ6vJkpjpp2yrYSSLuEzUiQC_HnxO7FwSw8KyEvdqTpGYOY5SyntEu2PGhYCwBqF6QGJYdGxl_gYLiRUK_s9rqHf45jCSY8Mwqz78nl8Xz8umbK-VJesxUAb-4nBlzK1c5dsRIq09fCBsAblTbjCiyN9AkgQJsL92unBv_ScekQvIwQQkiatwKMX6ZOdXWZuH-Ok2W7ROrgYYKAXOALE4Hk7p1duMnGd5G-XvUBUdcaoFXTS1AbzfaK13b9EG0Av9ndc4A)
+[thema](https://color.firefox.com/?theme=XQAAAAK6AQAAAAAAAABBKYhm849SCia-yK6EGccwS-xMDPr7thdS1H-qV5BVnLNCChVZ6vJkpjpp2yrYSSLuEzUiQC_HnxO7FwSw8KyEvdqTpGYOY5SyntEu2PGhYCwBqF6QGJYdGxl_gYLiRUK_s9rqHf4570v1GcKQd3yRpbsswuvuXuyqxL822wCSYO3_lvTIIvoKcB49LfBMxg18F69rhy4qy1dUVjsBp6mLp1fnR-cVrCwQIQBZFevDmjmKOiOH6f0N090HwTy0KEscaxd73owahe4yb6rAUV4yk5XzbbmvmNH8oTyfGMFF1Eun_1LnugA)
 
 ## ncmpcpp
 Locatie: `~/.config/ncmpcpp`

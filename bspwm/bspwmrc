@@ -9,8 +9,13 @@ export WINIT_X11_SCALE_FACTOR=1
 # Start daemon voor sneltoetsen.
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-# Start compositor.
-picom --experimental-backends &
+# Start compositor. De laptop vindt blur niet leuk dus worden de
+# experimentele features niet ingeschakeld.
+if [[ $(hostname) == 'iris' ]]; then
+  picom --experimental-backends &
+else
+  picom &
+fi
 
 # Notificatiesysteem. Kill om evt. config te herladen.
 killall dunst

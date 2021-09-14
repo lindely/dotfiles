@@ -17,8 +17,10 @@ else
 fi
 
 if [ "$updates" -eq "1" ]; then
-  echo "1 update"
+  echo "%{F#9e9ff9}%{F-} 1 update"
 elif [ "$updates" -gt 0 ]; then
-  echo "$updates updates"
+  echo "%{F#9e9ff9}%{F-} $updates updates"
+else
+  echo " "
 fi
 

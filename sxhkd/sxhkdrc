@@ -19,7 +19,7 @@ super + b
   firefox
 
 super + e
-  dolphin
+  echo "DolphinViewContainer > DolphinView > QAbstractScrollArea \{ background-color: #34343b; \}" > /tmp/dolphin.qss && dolphin -stylesheet /tmp/dolphin.qss
 
 super + r
   bspc wm -O DP-0 DP-4

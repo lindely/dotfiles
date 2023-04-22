@@ -17,3 +17,7 @@
     * Auteur: SurPs
     * Pixiv: https://www.pixiv.net/en/users/14357348
     * Bron: https://www.pixiv.net/en/artworks/104800761
+* お別れ.png
+    * Auteur: SurPs
+    * Pixiv: https://www.pixiv.net/en/users/14357348
+    * Bron: https://www.pixiv.net/en/artworks/105827613

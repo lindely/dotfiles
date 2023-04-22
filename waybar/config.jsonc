@@ -1,0 +1,172 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "mod": "dock",
+  "height": 28,
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "modules-left": [
+    "cpu",
+    "memory",
+    "clock"
+  ],
+  "modules-center": [
+    "wlr/workspaces",
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "custom/display-switch-dual-60",
+    "custom/display-switch-dual-120",
+    "custom/display-switch-single-60",
+    "custom/display-switch-single-120",
+    "network",
+    "bluetooth",
+    "pulseaudio",
+    "custom/wallchange",
+    "hyprland/language",
+    "tray",
+    "custom/power"
+  ],
+  "wlr/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "on-click": "activate",
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": []
+    }
+  },
+  "hyprland/window": {
+    "format": "  {}",
+    "separate-outputs": true,
+    "rewrite": {
+      "jn@vania:(.*)": "$1 ",
+      "(.*) — Mozilla Firefox": "$1 󰈹",
+      "(.*)Mozilla Firefox": "Firefox 󰈹",
+      "(.*) - Visual Studio Code": "$1 󰨞",
+      "(.*)Visual Studio Code": "Code 󰨞",
+      "(.*) — Dolphin": "$1 󰉋",
+      "(.*)Steam": "Steam 󰓓"
+    }
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "󰍛 {usage}%",
+    "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ]
+  },
+  "memory": {
+    "interval": 30,
+    "format": "󰾆 {percentage}%",
+    "format-alt": "󰾅 {used}GB",
+    "max-length": 10,
+    "tooltip": true,
+    "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
+  },
+  "clock": {
+    "format": "{: %H:%M %p 󰃭 %a %d %b}",
+    "format-alt": "{:󰥔 %H:%M  %b %Y}",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>"
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󱘖 Wired",
+    "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "format-linked": "󱘖 {ifname} (No IP)",
+    "format-disconnected": " Disconnected",
+    "format-alt": "󰤨 {signalStrength}%",
+    "interval": 5
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "", // an empty format will hide the module
+    "format-connected": " {num_connections}",
+    "tooltip-format": " {device_alias}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": " {device_alias}"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "婢",
+    "on-click": "pavucontrol -t 3",
+    "on-click-middle": "pamixer -t",
+    "on-scroll-up": "pamixer -i 2",
+    "on-scroll-down": "pamixer -d 2",
+    "tooltip-format": "{icon} {desc} {volume}%",
+    "scroll-step": 2,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  },
+  "custom/wallchange": {
+    "format": "{}",
+    "on-click": "~/.config/swww/swww.sh",
+    "interval": 86400, // once every day
+    "tooltip": true
+  },
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "Intl.", // US-intl
+    "format-nl": "EN", // NL-us
+    "keyboard-name": "ckb1:-corsair-k95-rgb-gaming-keyboard-vkb",
+    "on-click": "hyprctl switchxkblayout ckb1:-corsair-k95-rgb-gaming-keyboard-vkb next"
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 5
+  },
+  "custom/power": {
+    "format": "",
+    "on-click": "wlogout -b 2 -c 0 -r 0 -L 930 -R 930 -T 300 -B 300 --protocol layer-shell",
+    "tooltip": false
+  },
+  "custom/display-switch-dual-60": {
+    "format": "󰍺 60Hz",
+    "on-click": "~/.config/hypr/switch-monitor-setup.sh 2-60",
+    "tooltip": false
+  },
+  "custom/display-switch-dual-120": {
+    "format": "󰍺 120Hz",
+    "on-click": "~/.config/hypr/switch-monitor-setup.sh 2-120",
+    "tooltip": false
+  },
+  "custom/display-switch-single-60": {
+    "format": "󰍹 60Hz",
+    "on-click": "~/.config/hypr/switch-monitor-setup.sh 1-60",
+    "tooltip": false
+  },
+  "custom/display-switch-single-120": {
+    "format": "󰍹 120Hz",
+    "on-click": "~/.config/hypr/switch-monitor-setup.sh 1-120",
+    "tooltip": false
+  }
+}

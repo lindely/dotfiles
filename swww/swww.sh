@@ -8,16 +8,16 @@ SetWallpaper()
   # Pad naar actieve achtergrond.
   SRC=`readlink $BASEDIR/wp.$MODE`
   # Lijst van beschikbare achtergronden in dezelfde directory.
-  LIST=(`dirname $SRC`/*)
+  LIST=(`dirname "$SRC"`/*)
 
   for ((i=0; i<${#LIST[@]}; i++))
   do
     # Als het laatste bestand actief is, maak dan het eerste actief.
     if [ $((i + 1)) -eq ${#LIST[@]} ] ; then
-      ln -sf ${LIST[0]} $BASEDIR/wp.$MODE
+      ln -sf "${LIST[0]}" $BASEDIR/wp.$MODE
     # Maak het volgende bestand actief.
-    elif [ ${LIST[i]} == ${SRC} ] ; then
-      ln -sf ${LIST[i + 1]} $BASEDIR/wp.$MODE
+    elif [ "${LIST[i]}" == "${SRC}" ] ; then
+      ln -sf "${LIST[i + 1]}" $BASEDIR/wp.$MODE
       break 
     fi
   done

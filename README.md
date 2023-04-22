@@ -90,6 +90,10 @@ tabinstellingen naar 4 spaties.
     * Auteur: SurPs
     * Pixiv: https://www.pixiv.net/en/users/14357348
     * Bron: https://www.pixiv.net/en/artworks/105827613
+* アスナ 🐰 ストリート系.jpg
+    * Auteur: NEKOYA (ネコヤ)
+    * Pixiv: https://www.pixiv.net/en/users/4119858
+    * Bron: https://www.pixiv.net/en/artworks/105025513
 
 # waybar
 Schaamteloos gebaseerd op de superschone configuratie van

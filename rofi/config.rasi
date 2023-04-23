@@ -1,10 +1,10 @@
 configuration {
 	modi: "drun,filebrowser,window,run";
 	show-icons: true;
-	display-drun: "Applicaties";
-	display-run: "Uitvoeren";
-	display-filebrowser: "Bestanden";
-	display-window: "Vensters";
+	display-drun: "  Applicaties";
+	display-run: "  Uitvoeren";
+	display-filebrowser: "  Bestanden";
+	display-window: "  Vensters";
 	drun-display-format: "{name}";
 	window-format: "{w} · {c} · {t}";
 	font: "MiSans Light 10";
@@ -90,7 +90,7 @@ mode-switcher {
 }
 
 button {
-  width: 100px;
+  width: 110px;
   padding: 12px;
   background-color: @bg-col;
   cursor: pointer;
@@ -112,7 +112,9 @@ listbox {
 }
 
 message {
-  background-color: #ffffff;
+  background-color: @bg-col-light;
+  text-color: @fg-col2;
+  border: 0;
 }
 
 listview {

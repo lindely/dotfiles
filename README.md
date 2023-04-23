@@ -102,3 +102,7 @@ Enkele widgets zijn verwijderd en vervangen met custom widgets voor het
 weergeven van en wisselen tussen toetsenbordlayouts en voor het wisselen
 tussen monitor-configuraties (omdat de 7900XTX met 2x120Hz drie keer
 zoveel stroomg verbruikt als met 2x60Hz).
+
+# wlogout
+Configuratie o.b.v. vier knoppen met Nederlandse labels en kleuren
+gebaseerd op Catppuccin Frappé.

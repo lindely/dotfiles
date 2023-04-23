@@ -37,6 +37,10 @@ Schakelt de navigatiebalk bij het spoelen uit.
 Gebruikt een zgn. image backend om het Arch-logo vanuit een PNG te renderen.
 Dit werkt niet met alle terminals, maar wel met kitty.
 
+# rofi
+Custom opzet met kleuren van Catppuccin Frappé. Idee voor het blurren van
+de achtergrond overgenomen van [prasanthrangan](https://github.com/prasanthrangan/).
+
 # spaceship
 Aanvullende configuratie voor
 [spaceship](https://github.com/spaceship-prompt/spaceship-prompt).

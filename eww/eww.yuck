@@ -1,0 +1,141 @@
+; Listeners die op nieuwe input wachten o.b.v. de script-uitvoer.
+(deflisten activewindow `scripts/hyprland activewindow`)
+(deflisten workspaces `scripts/hyprland workspaces`)
+
+; Pollers die om de opgegeven interval afgaan.
+(defpoll poll_date :interval "5s" `date "+%A %-d %b"`)
+(defpoll poll_time :interval "5s" `date "+%-H:%M"`)
+
+; Widget voor weergave van datum en tijd.
+(defwidget datetime_widget []
+  (box :class "datetime-widget"
+    :orientation "h"
+    :space-evenly false
+    (box :class "datetime-widget-time"
+      :space-evenly false
+      (image :path "/usr/share/icons/Papirus-Dark/16x16/apps/cairo-clock.svg"
+        :image-width 16 :image-height 16)
+      (label :class "time" :text poll_time :valign "center")
+    )
+    (box :class "datetime-widget-date"
+      :space-evenly false
+      (image :path "/usr/share/icons/Papirus-Dark/16x16/apps/calendar.svg"
+        :image-width 16 :image-height 16)
+      (label :class "date" :text poll_date :valign "center")
+    )
+  ))
+
+; Widget voor weergave van de naam van het actieve venster.
+(defwidget activewindow_widget []
+  (box :class "activewindow-widget"
+    (eventbox :class "activewindow-widget-eventbox"
+      (box :class "activewindow-widget-box"
+        :orientation "h"
+        (label :class "activewindow-widget-label"
+          :text {activewindow})))))
+
+; Widget voor de weergave en het selecteren van de werkbladen.
+(defwidget workspaces_widget []
+  (box :class "workspace-widget"
+    (eventbox :class "workspace-widget-eventbox"
+      (box :space-evenly false
+        :class "workspace-widget-box"
+        :orientation "h"
+        (for workspace in {workspaces.workspaces}
+          (button :class "btn-workspace ${workspace.id == workspaces.active ? "active" : ""} ${workspace.windows == "" ? "empty" : ""}"
+            :onclick "hyprctl dispatch workspace ${workspace.id}"
+            :valign "center"
+            :tooltip "${workspace.windows}"
+            (label :class "icon"
+              :text {workspace.id}))
+        )
+      )
+    )
+  ))
+
+; Widget voor de afsluitknop
+(defwidget system_shutdown_widget []
+  (box :class "system-shutdown-widget"
+    (button :class "system-shutdown-widget-button"
+      :onclick "scripts/eww toggle system-shutdown overlay"
+      (image :path "/usr/share/icons/ePapirus-Dark/16x16/apps/system-shutdown.svg"))))
+
+(defwidget system_shutdown_button_widget [onclick icon label]
+  (box :orientation "v"
+    :space-evenly false
+    :tooltip label
+    :class "system-shutdown-button-widget" 
+    (button 
+      :class "system-shutdown-button-widget-button"
+      :onclick "scripts/eww toggle system-shutdown overlay && ${onclick}"
+      (box :class "icon ${icon}" )
+    )
+    (label :class "label" :text label)
+))
+
+; Widget die de horizontale taakbalk representeert.
+(defwidget hbar_widget []
+  (centerbox :class "hbar"
+    (box :class "left"
+      :space-evenly false
+      :halign "start"
+      (datetime_widget))
+    (box :class "middle"
+      (workspaces_widget))
+    (box :class "right"
+      :space-evenly false
+      :halign "end"
+      (system_shutdown_widget))
+  ))
+
+; Afsluitmenu
+(defwidget system-shutdown-window-widget []
+  (box :class "system-shutdown-window-widget"
+    :halign "center"
+    :valign "center"
+    :orientation "v"
+    :space-evenly false
+    (box :class "system-shutdown-window-widget-box"
+      :orientation "h"
+      :space-evenly false
+      (system_shutdown_button_widget
+        :onclick "scripts/system-shutdown lock"
+        :icon "lock"
+        :label "Vergrendelen")
+      (system_shutdown_button_widget
+        :onclick "scripts/system-shutdown suspend"
+        :icon "suspend"
+        :label "Slaapstand")
+      (system_shutdown_button_widget
+        :onclick "scripts/system-shutdown restart"
+        :icon "restart"
+        :label "Herstarten")
+      (system_shutdown_button_widget
+        :onclick "scripts/system-shutdown shutdown"
+        :icon "shutdown"
+        :label "Afsluiten")
+      (system_shutdown_button_widget
+        :onclick "scripts/system-shutdown logout"
+        :icon "logout"
+        :label "Uitloggen")
+    )))
+
+; Hoofdvenster waarin de horizontale taakbalk wordt getoond.
+(defwindow hbar
+  :namespace "eww.bar"
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  :monitor 0
+  :geometry (geometry :width "100%" :height "10px" :anchor "top center")
+  (hbar_widget))
+
+; Afsluitvenster
+(defwindow system-shutdown
+  :namespace "eww.system-shutdown"
+  :stacking "fg"
+  :focusable: true
+  :monitor 0
+  :geometry (geometry :width "100%" :height "110%" :anchor "center center")
+  (eventbox :onclick "scripts/eww toggle system-shutdown overlay"
+    (system-shutdown-window-widget)))

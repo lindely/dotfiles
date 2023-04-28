@@ -1,0 +1,58 @@
+$active-workspace-color: $base;
+$active-workspace-bg: $maroon;
+
+$hover-workspace-color: $base;
+$hover-workspace-bg: $sapphire;
+
+$empty-workspace-color: $overlay0;
+$empty-workspace-bg: $surface0;
+
+.workspace-widget {
+    margin: 4px;
+    padding: 0 4px;
+  
+    .workspace-widget-eventbox {
+      .workspace-widget-box {
+        padding: 0 4px;
+
+        .btn-workspace {
+          @include button(false, 6px);
+          font-size: 1.5em;
+
+          padding: 0 4px;
+          margin-left: 4px;
+          min-width: 20px;
+          transition: all 0.2s ease-in-out;
+          
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &.empty {
+            color: $empty-workspace-color;
+            background-color: $empty-workspace-bg;
+            font-weight: normal;
+          }
+
+          &.active {
+            color: $active-workspace-color;
+            background-color: $active-workspace-bg;
+            @include button-shadow($border-width, $active-workspace-bg);
+          }
+
+          &:hover {
+            color: $hover-workspace-color;
+            background-color: $hover-workspace-bg;
+            @include button-shadow($border-width, $hover-workspace-bg);
+          }
+
+          &.active, &:hover {
+            border-radius: 10px;
+            padding: 0 10px;
+          }
+        }
+      }
+    }
+  }
+  
+  

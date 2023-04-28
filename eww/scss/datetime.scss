@@ -1,0 +1,18 @@
+.datetime-widget {
+    > * {
+        margin-left: 8px;
+    }
+
+    .datetime-widget-date {
+        .date {
+            margin-left: 4px;
+        }
+    }
+    .datetime-widget-time {
+        .time {
+            margin-left: 4px;
+            margin-right: 4px;
+            font-size: 14px;
+        }
+    }
+}

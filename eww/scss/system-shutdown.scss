@@ -1,0 +1,52 @@
+.background.system-shutdown {
+    background-color: rgba(0,0,0,0.5);
+
+    .system-shutdown-window-widget {
+        @include popup-window();
+        border-radius: 20px;
+        padding: 50px;
+        
+        .system-shutdown-window-widget-box {
+            margin: 10px;
+
+            .system-shutdown-button-widget-button {
+                @include button(true);
+                font-size: 5em;
+                min-width: 64px;
+                min-height: 64px;
+                margin: 16px;
+
+                .icon {
+                    background-size: cover;
+                    background-repeat: no-repeat;
+
+                    &.lock{
+                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/system-lock-screen.svg');
+                    }
+
+                    &.suspend {
+                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/system-suspend.svg');
+                    }
+
+                    &.restart {
+                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/system-reboot.svg');
+                    }
+
+                    &.shutdown {
+                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/system-shutdown.svg');
+                    }
+                    
+                    &.logout {
+                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/computer-log-out.svg');
+                    }
+                }
+            }
+        }
+    }
+}
+
+.system-shutdown-widget {
+    .system-shutdown-widget-button {
+        @include button(true);
+    }
+}

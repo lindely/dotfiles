@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [[ $1 == "lock" ]]; then
+    notify-send -a $1 "Vergrendelen"
+elif [[ $1 == "suspend" ]]; then
+    notify-send -a $1 "Slaapstand"
+elif [[ $1 == "restart" ]]; then
+    notify-send -a $1 "Herstarten"
+elif [[ $1 == "shutdown" ]]; then
+    notify-send -a $1 "Afsluiten"
+elif [[ $1 == "logout" ]]; then
+    notify-send -a $1 "Uitloggen"
+fi

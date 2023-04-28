@@ -1,0 +1,23 @@
+#!/bin/sh
+
+if [[ $1 == "toggle" ]]; then
+    # Als het venster dat overeenkomt met het tweede argument een asterisk
+    # voor de naam heeft is deze geopend.
+    WINDOW_STATE=$(eww windows | grep $2 | awk '{print substr ($0, 0, 1)}')
+
+    # Is dit een overlay-venster?
+    if [[ $3 == "overlay" ]]; then
+        IS_OVERLAY=1
+    else
+        IS_OVERLAY=0
+    fi
+
+    
+    if [[ $WINDOW_STATE == "*" ]]; then
+        if [[ $IS_OVERLAY == 1 ]]; then hyprctl keyword blurls "remove,gtk-layer-shell"; fi 
+        eww close $2
+    else
+        if [[ $IS_OVERLAY == 1 ]]; then hyprctl keyword blurls "gtk-layer-shell"; fi 
+        eww open $2
+    fi
+fi

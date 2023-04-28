@@ -1,0 +1,18 @@
+.media-widget {
+    .media-widget-box {
+        color: $base;
+        background: $rosewater;
+        border: 1px solid $crust;
+        border-radius: $border-radius;
+        padding: 0 10px;
+        margin: 6px 10px;
+        
+        > :last-child {
+            margin-left: 8px;
+        }
+    }
+
+    &:hover .media-widget-box {
+        background: $peach;
+    }
+}

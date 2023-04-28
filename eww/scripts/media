@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [[ $1 == "toggle" ]]; then
+    mpc toggle
+elif [[ $1 == "up" ]]; then
+    mpc next
+elif [[ $1 == "down" ]]; then
+    mpc prev
+elif [[ $1 == "stop" ]]; then
+    mpc stop
+elif [[ $1 == "monitor" ]]; then
+    while true; do
+        STATUS=$(mpc status -f '%artist% - %title%' | head -n 1)
+        if [[ $STATUS != volume* ]]; then
+            echo $STATUS
+        else
+            echo ""
+        fi        
+        mpc idle player sticker > /dev/null
+    done
+fi

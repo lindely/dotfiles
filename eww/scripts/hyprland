@@ -5,14 +5,8 @@ WORKSPACES=10
 workspaces() {
   # Lees alle workspaces uit inclusief de titels van alle vensters en groepeer dit per workspace.
   WORKSPACE_CLIENTS=$(hyprctl clients -j | jq 'group_by(.workspace.id) | map ({key: (.[0].workspace.id | tostring), value: [.[] | .title]}) | from_entries')
-  #seq 1 $WORKSPACES | jq --argjson windows "${WORKSPACE_CLIENTS}" --slurp -Mc 'map(tostring) | map({id: . | tonumber, windows: ($windows[.]//[]) | join("\n")})'
   seq 1 $WORKSPACES | jq --argjson windows "${WORKSPACE_CLIENTS}" --slurp -Mc 'map(tostring) | map({id: . | tonumber, windows: ($windows[.]//[]) | join("\n")})'
 }
-
-# workspaces (){
-#     WORKSPACE_WINDOWS=$(hyprctl workspaces -j | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
-#     seq 1 $NUMBER_OF_WORKSPACES | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc 'map(tostring) | map({id: ., windows: ($windows[.]//0)})'
-# }
 
 activewindow() {
   WINDOW_TITLE=$(hyprctl activewindow -j | jq --raw-output .title)

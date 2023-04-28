@@ -1,6 +1,7 @@
 ; Listeners die op nieuwe input wachten o.b.v. de script-uitvoer.
 (deflisten activewindow `scripts/hyprland activewindow`)
-(deflisten workspaces `scripts/hyprland workspaces`)
+(deflisten workspaces :initial "{}" `scripts/hyprland workspaces`)
+(deflisten mpd :initial "" `scripts/media monitor`)
 
 ; Pollers die om de opgegeven interval afgaan.
 (defpoll poll_date :interval "5s" `date "+%A %-d %b"`)
@@ -85,8 +86,22 @@
     (box :class "right"
       :space-evenly false
       :halign "end"
+      (media-widget)
       (system_shutdown_widget))
   ))
+
+; Media die momenteel wordt afgespeeld.
+(defwidget media-widget []
+  (eventbox :onclick "scripts/media toggle"
+    :class "media-widget"
+    :onmiddleclick "scripts/media stop"
+    :onscroll "scripts/media {}"
+    :visible {mpd != ""}
+    (box :space-evenly false
+      :class "media-widget-box"
+      (image  :path '/usr/share/icons/ePapirus-Dark/64x64/devices/audio-headphones.svg' :image-width 16 :image-height 16)
+      (label :text {mpd})
+    )))
 
 ; Afsluitmenu
 (defwidget system-shutdown-window-widget []

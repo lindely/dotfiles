@@ -4,8 +4,8 @@
 (deflisten mpd :initial "" `scripts/media monitor`)
 
 ; Pollers die om de opgegeven interval afgaan.
-(defpoll poll_date :interval "5s" `date "+%A %-d %b"`)
-(defpoll poll_time :interval "5s" `date "+%-H:%M"`)
+(defpoll poll_time :interval "5s" `date "+ %-H:%M  •  %A %-d %b"`)
+(defpoll volume :interval "1s" :initial "{\"level\": 0, \"muted\": false}" `scripts/volume print`)
 
 ; Widget voor weergave van datum en tijd.
 (defwidget datetime_widget []
@@ -13,16 +13,7 @@
     :orientation "h"
     :space-evenly false
     (box :class "datetime-widget-time"
-      :space-evenly false
-      (image :path "/usr/share/icons/Papirus-Dark/16x16/apps/cairo-clock.svg"
-        :image-width 16 :image-height 16)
       (label :class "time" :text poll_time :valign "center")
-    )
-    (box :class "datetime-widget-date"
-      :space-evenly false
-      (image :path "/usr/share/icons/Papirus-Dark/16x16/apps/calendar.svg"
-        :image-width 16 :image-height 16)
-      (label :class "date" :text poll_date :valign "center")
     )
   ))
 
@@ -47,8 +38,7 @@
             :onclick "hyprctl dispatch workspace ${workspace.id}"
             :valign "center"
             :tooltip "${workspace.windows}"
-            (label :class "icon"
-              :text {workspace.id}))
+            (label :class "id" :text {workspace.id}))
         )
       )
     )
@@ -59,7 +49,8 @@
   (box :class "system-shutdown-widget"
     (button :class "system-shutdown-widget-button"
       :onclick "scripts/eww toggle system-shutdown overlay"
-      (image :path "/usr/share/icons/ePapirus-Dark/16x16/apps/system-shutdown.svg"))))
+      ;(image :path "/usr/share/icons/ePapirus-Dark/16x16/apps/system-shutdown.svg"))))
+      (image :path "/usr/share/icons/Tela-circle-dracula/24/panel/system-shutdown-panel.svg"))))
 
 (defwidget system_shutdown_button_widget [onclick icon label]
   (box :orientation "v"
@@ -80,14 +71,24 @@
     (box :class "left"
       :space-evenly false
       :halign "start"
-      (datetime_widget))
+      ;(image :path "/usr/share/icons/Tela-circle-dracula/scalable/apps/distributor-logo-blackarch.svg" 
+      ;  :class "os"
+      ;  :image-width 24 
+      ;  :image-height 24)
+      (workspaces_widget)
+    )
     (box :class "middle"
-      (workspaces_widget))
+      ;(workspaces_widget)
+      (activewindow_widget)
+    )
     (box :class "right"
       :space-evenly false
       :halign "end"
       (media-widget)
-      (system_shutdown_widget))
+      (systeemvak-widget)
+      (datetime_widget)
+      (system_shutdown_widget)
+    )
   ))
 
 ; Media die momenteel wordt afgespeeld.
@@ -95,20 +96,80 @@
   (eventbox :onclick "scripts/media toggle"
     :class "media-widget"
     :onmiddleclick "scripts/media stop"
-    :onscroll "scripts/media {}"
+    :onscroll "scripts/volume {}"
     :visible {mpd != ""}
     (box :space-evenly false
       :class "media-widget-box"
-      (image  :path '/usr/share/icons/ePapirus-Dark/64x64/devices/audio-headphones.svg' :image-width 16 :image-height 16)
+      ;(image  :path '/usr/share/icons/ePapirus-Dark/64x64/devices/audio-headphones.svg' :image-width 16 :image-height 16)
+      (image :path "/usr/share/icons/Tela-circle-dracula-dark/24/devices/audio-headphones.svg"
+        :image-width 16 :image-height: 16)
       (label :text {mpd})
     )))
+
+(defwidget systeemicoon-widget [for icon show value visible]
+  (eventbox :visible visible
+    :onhover "eww update show_${for}=true"
+    :onhoverlost "eww update show_${for}=false"
+    (box :space-evenly false
+      (revealer :transition "slideleft"
+        :duration "300ms"
+        :reveal show
+        :class "systeemicon-widget-revealer"
+        (label :class {for}
+               :angle 0
+               :text value))
+      (image :path {icon}
+        :valign "center"
+        :image-width 24
+        :image-height 24)
+    )))
+
+(defwidget systeemschuif-widget [for icon onchange show value]
+  (eventbox :onscroll "scripts/${for} {}"
+    :onhover "eww update show_${for}=true"
+    :onhoverlost "eww update show_${for}=false"
+    (box :space-evenly false
+      (revealer :transition "slideleft"
+        :duration "300ms"
+        :reveal show
+        :class "systeemschuif-widget-revealer"
+        (eventbox :class "schuif"
+          (scale :value value
+            :orientation "h"
+            :flipped false
+            :onchange onchange
+            :tooltip value)))
+      (image :path {icon}
+        :valign "center"
+        :image-width 24
+        :image-height 24))))
+
+; Iets wat op een systeemvak lijkt...
+(defvar show_volume false)
+(defvar show_mute false)
+
+(defwidget systeemvak-widget []
+  (box :class "systeemvak-widget"
+    (eventbox :class "systeemvak-widget-box"
+      (box :class "systeemvak-widget-items"
+        (systeemschuif-widget :for "volume"
+          :show show_volume
+          :value {volume.level}
+          :onchange  "scripts/volume value {}"
+          :icon {volume.icon})
+        (systeemicoon-widget :for "mute"
+          :show show_mute
+          :visible {volume.muted != "null" ? volume.muted : false}
+          :icon "/usr/share/icons/Tela-circle-dracula/24/panel/audio-volume-muted-panel.svg"
+          :value "Gedempt"
+        )
+      ))))
 
 ; Afsluitmenu
 (defwidget system-shutdown-window-widget []
   (box :class "system-shutdown-window-widget"
     :halign "center"
     :valign "center"
-    :orientation "v"
     :space-evenly false
     (box :class "system-shutdown-window-widget-box"
       :orientation "h"
@@ -142,7 +203,7 @@
   :exclusive true
   :focusable false
   :monitor 0
-  :geometry (geometry :width "100%" :height "10px" :anchor "top center")
+  :geometry (geometry :width "100%" :height "1px" :anchor "top center")
   (hbar_widget))
 
 ; Afsluitvenster

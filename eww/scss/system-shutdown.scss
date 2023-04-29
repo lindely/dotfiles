@@ -11,33 +11,32 @@
 
             .system-shutdown-button-widget-button {
                 @include button(true);
-                font-size: 5em;
-                min-width: 64px;
-                min-height: 64px;
+                min-width: 128px;
+                min-height: 128px;
                 margin: 16px;
 
                 .icon {
-                    background-size: cover;
+                    background-size: 128px 128px;
                     background-repeat: no-repeat;
-
+                    // TODO: PNGs maken want het systeem schaalt blijkbaar niet netjes.
                     &.lock{
-                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/system-lock-screen.svg');
+                        background-image: url('/usr/share/icons/Tela-circle-dracula-dark/scalable/apps/system-lock-screen.svg');
                     }
 
                     &.suspend {
-                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/system-suspend.svg');
+                        background-image: url('/usr/share/icons/Tela-circle-dracula/scalable/apps/system-suspend-hibernate.svg');
                     }
 
                     &.restart {
-                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/system-reboot.svg');
+                        background-image: url('/usr/share/icons/Tela-circle-dracula-dark/scalable/apps/system-restart.svg');
                     }
 
                     &.shutdown {
-                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/system-shutdown.svg');
+                        background-image: url('/usr/share/icons/Tela-circle-dracula-dark/scalable/apps/system-shutdown.svg');
                     }
                     
                     &.logout {
-                        background-image: url('/usr/share/icons/ePapirus-Dark/64x64/apps/computer-log-out.svg');
+                        background-image: url('/usr/share/icons/Tela-circle-dracula-dark/scalable/apps/system-log-out.svg');
                     }
                 }
             }

@@ -1,0 +1,15 @@
+.systeemvak-widget {
+  .systeemvak-widget-box {
+    .systeemvak-widget-items {
+      .schuif {
+        scale {
+          min-width: 100px;
+
+          trough {
+            background-color: $overlay2;
+          }
+        }
+      }
+    }
+  }
+}

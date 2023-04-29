@@ -10,13 +10,25 @@ workspaces() {
 
 activewindow() {
   WINDOW_TITLE=$(hyprctl activewindow -j | jq --raw-output .title)
+  OUTPUT=""
 
-  if [[ `echo $WINDOW_TITLE | grep -E "(.*)Mozilla Firefox$"` ]]; then
-    echo "󰈹 Firefox"
-  elif [[ ${#WINDOW_TITLE} -gt 10 ]]; then
+  declare -A apps=(
+    ["󰈹 Firefox"]="(.*)Mozilla Firefox$"
+    [" vim"]="vim"
+    ["󰙯 Discord"]="(.*) - Discord"
+  )
+
+  for key in "${!apps[@]}"; do
+    if [[ `echo $WINDOW_TITLE | grep -E "${apps[$key]}"` ]]; then
+      OUTPUT="$key"
+      break 
+    fi
+  done
+
+  if [[ "$OUTPUT" == "" ]]; then 
     echo "`echo $WINDOW_TITLE | cut -c 1-10`..."
   else
-    echo $WINDOW_TITLE
+    echo $OUTPUT
   fi
 }
 

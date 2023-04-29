@@ -1,4 +1,4 @@
-@import './scss/frappe';
+@import './scss/mocha';
 @import './scss/variables';
 @import './scss/mixins';
 @import './scss/workspace';
@@ -6,22 +6,33 @@
 @import './scss/datetime';
 @import './scss/system-shutdown';
 @import './scss/media-widget';
+@import './scss/systeemvak';
 
 * {
-  // font-family: 'MiSans Light', 'NotoSansMono Nerd Font';
-  // font-family: 'Ubuntu Nerd Font';
-  font-family: 'MiSans SemiBold', 'Ubuntu Nerd Font';
-  font-size: 10px;
+  // font-family: 'MiSans SemiBold', 'Ubuntu Nerd Font';
+  font-family: 'Ubuntu Nerd Font';
+  font-size: 14px;
   transition: 0.2s;
 }
 
 .hbar {
-  background-color: rgba(35, 38, 52, .70);
+  background-color: rgba($surface0, 0.8);
+  font-weight: bold;
+  color: $text;
+  border-bottom: 1 solid $crust;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.8);
+  padding: 0;
+  margin: 0;
 
-  min-height: 2.2em;
-    font-weight: bold;
-    font-size: 1.1em;
-    color: $text;
-    border-bottom: 1 solid $crust;
-    box-shadow: 0 0 6px 0 rgba(0,0,0,0.8);
+  .left > * {
+    margin-left: 8px;
+  }
+
+  .middle {
+
+  }
+
+  .right {
+
+  }
 }

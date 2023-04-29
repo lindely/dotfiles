@@ -1,0 +1,33 @@
+#!/bin/sh
+
+function print {
+  VOLUME=$(pamixer --get-volume)
+  MUTED=$(pamixer --get-mute)
+
+  if [[ $VOLUME -gt 66 ]]; then
+    ICON="/usr/share/icons/Tela-circle-dracula-dark/24/actions/audio-volume-high.svg"
+  elif [[ $VOLUME -gt 33 ]]; then
+    ICON="/usr/share/icons/Tela-circle-dracula-dark/24/actions/audio-volume-medium.svg"
+  else 
+    ICON="/usr/share/icons/Tela-circle-dracula-dark/24/actions/audio-volume-low.svg"
+  fi
+  
+  echo "{\"level\": $VOLUME, \"muted\": $MUTED, \"icon\": \"$ICON\"}"
+}
+
+if [[ $1 == "toggle-mute" ]]; then
+  pamixer -t
+elif [[ $1 == "up" ]]; then
+  pamixer -i 2
+elif [[ $1 == "down" ]]; then
+  pamixer -d 2
+elif [[ $1 == "value" ]]; then
+  pamixer --set-volume $2
+fi
+
+if [[ $1 == "print" ]]; then
+  print
+else
+  eww update volume="$(print)"
+fi
+

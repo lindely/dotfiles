@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "position": "bottom",
+  "position": "top",
   "mod": "dock",
   "height": 28,
   "exclusive": true,
@@ -9,7 +9,8 @@
   "modules-left": [
     "cpu",
     "memory",
-    "clock"
+    "clock#time",
+    "clock#date"
   ],
   "modules-center": [
     "wlr/workspaces",
@@ -20,81 +21,87 @@
     "custom/display-switch-dual-120",
     "custom/display-switch-single-60",
     "custom/display-switch-single-120",
-    "network",
+    "hyprland/language",
     "bluetooth",
     "pulseaudio",
     "custom/wallchange",
-    "hyprland/language",
     "tray",
     "custom/power"
   ],
   "wlr/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true,
+    "all-outputs": false,
+    "sort-by-name": false,
+    "sort-by-coordinates": false,
+    "sort-by-number": true,
     "on-click": "activate",
     "persistent_workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": [],
-      "6": [],
-      "7": [],
-      "8": [],
-      "9": [],
-      "10": []
+      "1": ["DP-1"],
+      "2": ["DP-1"],
+      "3": ["DP-1"],
+      "4": ["DP-1"],
+      "5": ["DP-1"],
+      "6": ["DP-1"],
+      "7": ["DP-1"],
+      "8": ["DP-1"],
+      "9": ["DP-3"],
+      "10": ["DP-3"]
     }
   },
   "hyprland/window": {
-    "format": "  {}",
+    "format": "{}",
     "separate-outputs": true,
     "rewrite": {
-      "jn@vania:(.*)": "$1 ",
-      "(.*) — Mozilla Firefox": "$1 󰈹",
-      "(.*)Mozilla Firefox": "Firefox 󰈹",
-      "(.*) - Visual Studio Code": "$1 󰨞",
-      "(.*)Visual Studio Code": "Code 󰨞",
-      "(.*) — Dolphin": "$1 󰉋",
-      "(.*)Steam": "Steam 󰓓"
+      "(.*) — Mozilla Firefox": "󰈹 $1",
+      "(.*)Mozilla Firefox": "󰈹 Firefox",
+      "(.*) - Mozilla Thunderbird": " $1",
+      "(.*) - Code (.*)": "󰨞 $1",
+      "(.*)Visual Studio Code": "󰨞 Code",
+      "(.*) — Dolphin": "󰉋 $1",
+      "(.*)Steam": "󰓓 Steam",
+      "Bitwarden": " Bitwarden",
+      "vim": " vim",
+      "Joplin": " Joplin",
+      "(.*) - Discord$": "󰙯 $1",
+      "(.*)Cantata": "󰓃 Cantata"
     }
   },
   "cpu": {
     "interval": 10,
-    "format": "󰍛 {usage}%",
-    "format-alt": "{icon0}{icon1}{icon2}{icon3}",
-    "format-icons": [
-      "▁",
-      "▂",
-      "▃",
-      "▄",
-      "▅",
-      "▆",
-      "▇",
-      "█"
-    ]
+    "format": "{usage}%"
   },
   "memory": {
     "interval": 30,
-    "format": "󰾆 {percentage}%",
-    "format-alt": "󰾅 {used}GB",
-    "max-length": 10,
-    "tooltip": true,
-    "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
+    "format": "{percentage}%",
+    "max-length": 10
   },
-  "clock": {
-    "format": "{: %H:%M %p 󰃭 %a %d %b}",
-    "format-alt": "{:󰥔 %H:%M  %b %Y}",
-    "tooltip-format": "<tt><big>{calendar}</big></tt>"
+  "clock#time": {
+    "format": "{: %H:%M}"
   },
-  "network": {
-    // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "󰤨 {essid}",
-    "format-ethernet": "󱘖 Wired",
-    "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-    "format-linked": "󱘖 {ifname} (No IP)",
-    "format-disconnected": " Disconnected",
-    "format-alt": "󰤨 {signalStrength}%",
-    "interval": 5
+  "clock#date": {
+    "format": "{: %a %d %b}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#8caaee'><b>{}</b></span>",
+        "days": "<span color='#c6d0f5'><b>{}</b></span>",
+        "weeks": "<span color='#e5c890'><b>{}</b></span>",
+        "weekdays": "<span color='#e5c890'><b>{}</b></span>",
+        "today": "<span color='#ea999c'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions":  {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   },
   "bluetooth": {
     "format": "",

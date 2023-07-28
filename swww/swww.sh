@@ -54,4 +54,4 @@ MODE=portrait
 SetWallpaper
 
 # Maak een blurry versie die in rofi wordt gebruikt.
-convert -gravity center -crop 2560x800+0+0 -scale 10% -blur 0x2.5 -resize 1000% $BASEDIR/wp.landscape $BASEDIR/wp.blur
+convert -gravity center -crop 2560x800+0+0 -scale 33% -level 20% -blur 0x2 -resize 300% $BASEDIR/wp.landscape $BASEDIR/wp.blur

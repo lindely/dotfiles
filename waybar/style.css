@@ -1,63 +1,66 @@
+@import "frappe.css";
+
 * {
-    border: none;
-    border-radius: 0px;
-    font-family: "NotoSansMono Nerd Font";
-    font-weight: bold;
-    font-size: 10px;
-    min-height: 0px;
+  border: none;
+  border-radius: 0px;
+  font-family: "MiSans Light", "NotoSansMono Nerd Font";
+  font-weight: bold;
+  font-size: 12px;
+  min-height: 0px;
 }
 
 window#waybar {
-    background: rgba(17, 17, 27, .10);
+  background: rgba(35, 38, 52, .10); /* @crust to rgb */
 }
 
 tooltip {
-    background: #1e1e2e;
-    color: #cdd6f4;
-    border-radius: 10px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #11111b;
+  background: @surface0;
+  color: @text;
+  border-radius: 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: @crust;
 }
 
 #workspaces button {
-    box-shadow: none;
-    text-shadow: none;
-    padding: 0px;
-    border-radius: 7px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    padding-left: 2px;
-    padding-right: 2px;
-    color: #cdd6f4;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+  box-shadow: none;
+  text-shadow: none;
+  padding: 0px;
+  border-radius: 7px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding-left: 2px;
+  padding-right: 2px;
+  color: @text;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
-    background: #a6adc8;
-    color: #313244;
-    margin-left: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+  background: @blue;
+  color: @base;
+  margin-left: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 2px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
-    background: #f5c2e7;
-    color: #313244;
-    padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+  background: @maroon;
+  color: @base;
+  padding-left: 2px;
+  padding-right: 2px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #cpu,
 #memory,
 #custom-power,
-#clock,
+#clock.time,
+#clock.date,
 #workspaces,
 #window,
 #custom-updates,
@@ -72,121 +75,144 @@ tooltip {
 #custom-display-switch-single-120,
 #language,
 #tray {
-    color: #cdd6f4;
-    background: #11111b;
-    opacity: 1;
-    padding: 0px;
-    margin: 3px 0px 3px 0px;
+  color: @text;
+  background: @base;
+  opacity: 1;
+  padding: 0px;
+  margin: 3px 0px 3px 0px;
 }
 
-
-/* resource monitor block */
+/* Containers met iconen */
+#cpu,
+#memory,
+#clock.time,
+#clock.date {
+  background-position: 12px;
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  padding-left: 22px;
+}
 
 #cpu {
-    border-radius: 10px 0px 0px 10px;
-    margin-left: 25px;
-    padding-left: 12px;
-    padding-right: 4px;
+  background-image: url('/usr/share/icons/Papirus-Dark/16x16/panel/cpu-frequency-indicator.svg');
+  border-radius: 10px 0px 0px 10px;
+  margin-left: 25px;
+  padding-left: 26px;
 }
 
 #memory {
-    border-radius: 0px 10px 10px 0px;
-    border-left-width: 0px;
-    padding-left: 4px;
-    padding-right: 12px;
-    margin-right: 6px;
+  background-image: url('/usr/share/icons/Papirus-Dark/16x16/panel/gpm-monitor.svg');
+  border-radius: 0px 10px 10px 0px;
+  padding-left: 26px;
+  padding-right: 12px;
+  margin-right: 6px;
 }
 
-
-/* date time block */
-
-#clock {
-    border-radius: 10px;
-    margin-left: 6px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-left: 6px;
+#clock.time {
+  background-image: url('/usr/share/icons/Papirus-Dark/16x16/apps/cairo-clock.svg');
+  border-radius: 10px 0px 0px 10px;
+  margin-left: 25px;
 }
 
+#clock.date {
+  background-image: url('/usr/share/icons/Papirus-Dark/16x16/apps/calendar.svg');
+  border-radius: 0px 10px 10px 0px;
+  padding-right: 12px;
+  margin-right: 6px;
+  font-weight: normal;
+}
 
 /* workspace window block */
 
 #workspaces {
-    border-radius: 10px 0px 0px 10px;
-    padding-left: 12px;
+  border-radius: 10px 0px 0px 10px;
+  padding-left: 12px;
 }
 
 #window {
-    border-radius: 0px 10px 10px 0px;
-    padding-right: 12px;
+  border-radius: 0px 10px 10px 0px;
+  padding-right: 12px;
+}
+
+window#waybar #window {
+  background: @base;
+  color: #ffffff;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+window#waybar.empty #window {
+  background: @base;
+  padding: 0;
 }
 
 
 /* control center block */
 
 #network {
-    border-radius: 10px 0px 0px 10px;
-    padding-left: 12px;
-    padding-right: 4px;
+  border-radius: 10px 0px 0px 10px;
+  padding-left: 12px;
+  padding-right: 4px;
 }
 
 #bluetooth {
-    padding-left: 4px;
-    padding-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
 } 
 
 #pulseaudio {
-    padding-left: 4px;
-    padding-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 #custom-wallchange {
-    border-radius: 0px 10px 10px 0px;
-    padding-left: 4px;
-    padding-right: 12px;
-    margin-right: 6px;
+  border-radius: 0px 10px 10px 0px;
+  padding-left: 4px;
+  padding-right: 12px;
+  margin-right: 6px;
 }
 
 
 /* system tray block */
 
 #language {
-    border-radius: 10px 0px 0px 10px;
-    padding-left: 12px;
-    padding-right: 4px;
+  border-radius: 10px 0px 0px 10px;
+  padding-left: 12px;
+  padding-right: 4px;
 }
 
 #tray {
-    padding-left: 4px;
-    padding-right: 4px;
+  border-radius: 10px 0px 0px 10px;
+  padding-left: 6px;
+  padding-right: 4px;
 }
 
 #custom-power {
-    border-radius: 0px 10px 10px 0px;
-    padding-left: 4px;
-    padding-right: 12px;
-    margin-right: 25px;
+  border-radius: 0px 10px 10px 0px;
+  padding-left: 4px;
+  padding-right: 12px;
+  margin-right: 25px;
 }
 
 #custom-display-switch-dual-60 {
-    border-radius: 10px 0px 0px 10px;
-    padding-left: 12px;
-    padding-right: 4px;
+  border-radius: 10px 0px 0px 10px;
+  padding-left: 12px;
+  padding-right: 4px;
 }
 
 #custom-display-switch-dual-120 {
-    padding-left: 4px;
-    padding-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 #custom-display-switch-single-60 {
-    padding-left: 4px;
-    padding-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 #custom-display-switch-single-120 {
-    padding-left: 4px;
-    padding-right: 12px;
-    margin-right: 6px;
-    border-radius: 0px 10px 10px 0px;
+  padding-left: 4px;
+  padding-right: 12px;
+  margin-right: 6px;
+  border-radius: 0px 10px 10px 0px;
 }

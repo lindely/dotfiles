@@ -7,3 +7,4 @@ then
 fi
 
 rm monitors.conf && ln -sf "$CONFIG_FILE" monitors.conf
+echo '{"text": "", "tooltip": "", "class": "active"}'
